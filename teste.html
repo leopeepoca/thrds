@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Botão Invisível</title>
+    <style>
+        .invisible-button {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            width: 50px;
+            height: 50px;
+            background-color: transparent;
+            border: none;
+            opacity: 0.1;
+            cursor: pointer;
+        }
+
+        .invisible-button:hover {
+            opacity: 0.3;
+        }
+
+        #image-container {
+            display: none; /* Oculto por padrão */
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        #image-container img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        #close-btn {
+            display: block;
+            margin: 10px auto;
+            padding: 5px 10px;
+            background: red;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <button class="invisible-button" onclick="showImage()"></button>
+
+    <div id="image-container">
+        <img src="img/vale1.png" alt="Vale Jantar Romântico">
+        <button id="close-btn" onclick="hideImage()">Fechar</button>
+    </div>
+
+    <script>
+        
+        function showImage() {
+            document.getElementById('image-container').style.display = 'block';
+        }
+
+        function hideImage() {
+            document.getElementById('image-container').style.display = 'none';
+        }
+    </script>
+
+</body>
+</html>

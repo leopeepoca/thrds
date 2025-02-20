@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nosso Tempo Separados 💔</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #1a1a1a;
+            color: #ff4d4d;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        #contador {
+            font-size: 2em;
+            background: rgba(255, 77, 77, 0.2);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(255, 77, 77, 0.5);
+            color: #ff4d4d;
+            position: relative;
+            z-index: 10;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: #cc0000;
+        }
+
+        span {
+            font-weight: bold;
+            color: #ff3333;
+        }
+
+        /* Estilização do carrossel */
+        .carousel {
+            width: 80%;
+            max-width: 600px;
+            overflow: hidden;
+            position: relative;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .carousel img {
+            width: 100%;
+            display: none;
+            border-radius: 10px;
+        }
+
+        /* Corações partidos animados */
+        .heart {
+            position: absolute;
+            color: #ff4d4d;
+            font-size: 24px;
+            animation: float 5s infinite ease-in-out;
+            opacity: 0.7;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            50% { transform: translateY(-50px) scale(1.2); opacity: 0.8; }
+            100% { transform: translateY(-100px) scale(1); opacity: 0; }
+        }
+
+        /* Botão de música */
+        #musicaBtn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #ff4d4d;
+            color: white;
+            cursor: pointer;
+        }
+
+        #musicaBtn:hover {
+            background-color: #cc0000;
+        }
+
+        #voltarBtn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 77, 77, 0.2);
+            color: #ff4d4d;
+            box-shadow: 0 4px 10px rgba(255, 77, 77, 0.5);
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        #voltarBtn:hover {
+            background: rgba(255, 77, 77, 0.5);
+        }
+        .invisible-button {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            width: 50px;
+            height: 50px;
+            background-color: transparent;
+            border: none;
+            opacity: 0.1;
+            cursor: pointer;
+        }
+
+        .invisible-button:hover {
+            opacity: 0.3;
+        }
+
+        #image-container {
+            display: none; /* Oculto por padrão */
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        #image-container img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        #close-btn {
+            display: block;
+            margin: 10px auto;
+            padding: 5px 10px;
+            background: red;
+            color: white;
+            border: none;
+            cursor: pointer;}
+
+    </style>
+</head>
+<link rel="icon" href="img/icon.png" type="image/x-icon">
+<body>
+    <a href="texto.html" id="voltarBtn">Clique aqui...</a>
+    <h1>Sinto falta de viver a vida ao teu lado.</h1>
+    <div class="mensagem-aviso">⚠️ Por favor, caso a música não comece sozinha, clicar no botão <B>Tocar Música</B></div>
+    <div id="contador">Carregando...</div>
+
+    <div id="image-container">
+        <img src="img/vale1.png" alt="Vale Jantar Romântico">
+        <button id="close-btn" onclick="hideImage()">Fechar</button>
+    </div>
+
+    <!-- Carrossel de fotos -->
+    <div class="carousel">
+        <img src="img/img.png" alt="Imagem 1">
+        <img src="img/img1.png" alt="Imagem 2">
+        <img src="img/img2.png" alt="Imagem 3">
+        <img src="img/img3.png" alt="Imagem 4">
+        <img src="img/img4.png" alt="Imagem 5">
+        <img src="img/img5.png" alt="Imagem 6">
+        <img src="img/img6.png" alt="Imagem 7">
+        <img src="img/img7.png" alt="Imagem 8">
+    </div>
+
+    <!-- Botão de música -->
+    <button id="musicaBtn">🔊 Tocar Música</button>
+    
+    <!-- Áudio de fundo -->
+    <audio id="musica" loop>
+        <source src="msc/intentions.mp3" type="audio/mpeg">
+        Seu navegador não suporta áudio.
+    </audio>
+
+    <script>
+        function atualizarContador() {
+            const dataSeparacao = new Date("2025-02-14T15:53:00"); // Defina a data da separação
+            const agora = new Date();
+            
+            // Calcula a diferença em milissegundos
+            const diferencaEmMilissegundos = agora - dataSeparacao;
+
+            // Converte para tempo legível
+            const dias = Math.floor(diferencaEmMilissegundos / (1000 * 60 * 60 * 24));
+            const horas = Math.floor((diferencaEmMilissegundos % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutos = Math.floor((diferencaEmMilissegundos % (1000 * 60 * 60)) / (1000 * 60));
+            const segundos = Math.floor((diferencaEmMilissegundos % (1000 * 60)) / 1000);
+
+            // Atualiza o contador na página
+            document.getElementById("contador").innerHTML = 
+                `<span>${dias}</span> dias, 
+                 <span>${horas}</span> horas, 
+                 <span>${minutos}</span> minutos e 
+                 <span>${segundos}</span> segundos 💔`;
+        }
+
+        function criarCoracoesQuebrados() {
+            const coracao = document.createElement("div");
+            coracao.classList.add("heart");
+            coracao.innerHTML = "💔";
+            document.body.appendChild(coracao);
+
+            // Posição inicial aleatória
+            coracao.style.left = Math.random() * 100 + "vw";
+            coracao.style.top = "100vh";
+            coracao.style.animationDuration = (Math.random() * 2 + 3) + "s"; // Duração aleatória
+
+            // Remover coração após a animação
+            setTimeout(() => {
+                coracao.remove();
+            }, 5000);
+        }
+
+        function iniciarCarrossel() {
+            let imagens = document.querySelectorAll(".carousel img");
+            let index = 0;
+            imagens[index].style.display = "block";
+
+            setInterval(() => {
+                imagens[index].style.display = "none";
+                index = (index + 1) % imagens.length;
+                imagens[index].style.display = "block";
+            }, 3000);
+        }
+
+        function controlarMusica() {
+            const musica = document.getElementById("musica");
+            const botao = document.getElementById("musicaBtn");
+
+            if (musica.paused) {
+                musica.play();
+                botao.textContent = "🔇 Pausar Música";
+            } else {
+                musica.pause();
+                botao.textContent = "🔊 Tocar Música";
+            }
+        }
+        
+        function controlarMusica() {
+                const musica = document.getElementById("musica");
+                const botao = document.getElementById("musicaBtn");
+    
+                if (musica.paused) {
+                    musica.play();
+                    botao.textContent = "🔇 Pausar Música";
+                } else {
+                    musica.pause();
+                    botao.textContent = "🔊 Tocar Música";
+                }
+            }
+            const frases = [
+                "Just shout whenever, and Ill be there",
+                "And I just cant believe, we aint together",
+                "Dont wanna close my eyes, Im scared I will miss too much",
+                "Two seconds without you its like two months, and thats too much",
+                "And girl, you are my one love, my one heart, my one life for sure",
+                "And I ma be your one guy, youll be my number one girl, always making time for you",
+                "Say go through the darkest of days",
+                "I dont believe in nirvana, but the way that we love in the night gave me life",
+                "Shower you with all my attention, yeah, these are my only intentions",
+                "In the mornin or the late, say the word, on my way",
+                "I put my heart into your hands, learn the lessons you teach",
+                "Y know I love you, did I ever tell you? You make it better like that",
+                "Wanna argue all day, make love all night",
+                "And I just wanna be the best of me, even though sometimes we might disagree, so that I can be the best for you"
+            ];
+
+            function criarBalao() {
+        const balao = document.createElement("div");
+        balao.className = "balao";
+        balao.innerText = frases[Math.floor(Math.random() * frases.length)];
+
+        const larguraTela = window.innerWidth;
+        const alturaTela = window.innerHeight;
+        const container = document.querySelector(".container");
+        const rect = container.getBoundingClientRect();
+
+        let x, y;
+        let seguro = false;
+
+        while (!seguro) {
+            x = Math.random() * (larguraTela - 150);
+            y = Math.random() * (alturaTela - 100);
+
+            // Garantir que os balões fiquem FORA do container
+            if (
+                x < rect.left - 100 || x > rect.right + 100 ||
+                y < rect.top - 100 || y > rect.bottom + 100
+            ) {
+                seguro = true;
+            }
+        }
+
+        balao.style.left = `${x}px`;
+        balao.style.top = `${y}px`;
+
+        document.body.appendChild(balao);
+
+        setTimeout(() => { document.body.removeChild(balao); }, 6000);
+    }
+    function showImage() {
+            document.getElementById('image-container').style.display = 'block';
+        }
+
+        function hideImage() {
+            document.getElementById('image-container').style.display = 'none';
+        }
+        document.getElementById("musicaBtn").addEventListener("click", controlarMusica);
+
+        // Atualiza o contador ao carregar a página e a cada 1 segundo
+        atualizarContador();
+        setInterval(atualizarContador, 1000);
+
+        // Gera corações partidos flutuando a cada 800ms
+        setInterval(criarCoracoesQuebrados, 800);
+
+        // Inicia o carrossel de imagens
+        iniciarCarrossel();
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The end (?) </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: black;
+            color: #ff4d4d;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+        .container {
+            max-width: 800px;
+            width: 90%;
+            margin: auto;
+            background: #1a1a1a;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #d9534f;
+            font-size: 2em;
+        }
+        h3 {
+            text-align: center;
+            color: #d9534f;
+        }
+
+        h4 {
+            text-align: center;
+            color: #d9534f;
+        }
+        p {
+            text-align: justify;
+            line-height: 1.6;
+            font-size: 1.1em;
+        }
+        b {
+            color: #d9534f;
+        }
+
+        #musicaBtn {
+            position: fixed; /* Alterado para seguir a rolagem */
+            bottom: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 77, 77, 0.2);
+            color: #ff4d4d;
+            box-shadow: 0 4px 10px rgba(255, 77, 77, 0.5);
+            cursor: pointer;
+        }
+        
+        span {
+            font-weight: bold;
+            color: #ff3333;
+        }
+
+        .balao {
+            position: fixed;
+            background: rgba(255, 77, 77, 0.3);
+            color: #ff4d4d;
+            padding: 10px 15px;
+            border-radius: 15px;
+            box-shadow: 2px 2px 5px rgba(255, 77, 77, 0.5);
+            font-size: 1em;
+            animation: flutuar 5s infinite alternate ease-in-out;
+            max-width: 150px;
+            text-align: center;
+
+        }
+
+        /* Corações partidos animados */
+        .heart {
+            position: fixed;
+            color: hotpink;
+            font-size: 24px;
+            animation: float 5s infinite ease-in-out;
+            opacity: 0.7;
+        }
+        
+
+        @keyframes float {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            50% { transform: translateY(-50px) scale(1.2); opacity: 0.8; }
+            100% { transform: translateY(-100px) scale(1); opacity: 0; }
+        }
+        #voltarBtn, #proximoBtn {
+    display: inline-block;
+    text-decoration: none;
+    font-size: 18px;
+    color: #d9534f;
+    font-weight: bold;
+    padding: 10px 15px;
+    border-radius: 8px;
+    background-color: rgba(217, 83, 79, 0.2);
+    transition: background 0.3s ease;
+    box-shadow: 0 4px 10px rgba(255, 77, 77, 0.5);
+    position: fixed;
+    top: 20px;
+    z-index: 1000; /* Garante que fique sobre outros elementos */
+}
+
+#voltarBtn {
+    left: 20px;
+}
+
+#proximoBtn {
+    right: 20px;
+}
+
+#voltarBtn:hover, #proximoBtn:hover {
+    background-color: rgba(217, 83, 79, 0.5);
+}
+
+        /* Responsividade */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.8em;
+            }
+            p {
+                font-size: 1em;
+            }
+            .container {
+                padding: 15px;
+            }
+            .balao {
+                font-size: 0.9em;
+                padding: 8px 12px;
+            }
+        }
+        #contador {
+    font-size: 0.8em;
+    background: rgba(255, 77, 77, 0.2);
+    padding: 10px;
+    width: 3cm;
+    height: 3cm;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(255, 77, 77, 0.5);
+    color: #ff4d4d;
+    position: fixed; /* Alterado de absolute para fixed */
+    bottom: 20px;
+    right: 20px;
+    z-index: 10;
+    word-wrap: break-word;
+    overflow: hidden;
+}
+.mensagem-aviso {
+    color: #d9534f;
+    font-size: 16px;
+    text-align: center;
+    margin: 20px auto; /* Espaçamento entre os elementos */
+}
+#btnTexto{
+    display: flex;
+    text-decoration: none;
+    font-size: 18px;
+    color: #d9534f;
+    font-weight: bold;
+    padding: 5px 10px; /* Reduz o tamanho interno dos botões */
+    border-radius: 8px;
+    background-color: rgba(217, 83, 79, 0.2);
+    transition: background 0.3s ease;
+    box-shadow: 0 4px 10px rgba(255, 77, 77, 0.5);
+    justify-content: center; /* Centraliza os botões */
+    gap: 20px; /* Adiciona um espaço entre eles */
+    margin-top: 20px; /* Ajusta a margem superior */
+    font-size: 14px; /* Ajuste o tamanho do texto conforme necessário */
+    min-width: auto; /* Remove largura mínima para evitar botões largos */
+}
+
+
+    </style>
+</head>
+<link rel="icon" href="img/icon.png" type="image/x-icon">
+<body>
+    <a href="form.html" id="voltarBtn">⬅ Voltar</a>
+    <a href="index.html" id="proximoBtn">Começo</a>
+
+    <div class="container">
+        <div class="mensagem-aviso">⚠️ Por favor, caso a música não comece sozinha, clicar no botão <B>Tocar Música</B></div>
+        <h1> The end (?)</h1>
+        <p>Olá, tudo bem?</p>
+
+        <p>Sei que você pediu um tempo, mas, como Justin Bieber disse, <em>"dois segundos sem você parecem dois meses."</em> Espero, de verdade, que tenha gostado disso. Fiz com muito empenho, carinho e <strong>muitas</strong> noites sem dormir. Não faço ideia de como você está agora. Na verdade, eu queria estar ao seu lado no domingo, compartilhando cada uma dessas páginas com você... Mas sei que talvez essa não seja a sua vontade, no momento.</p>
+        
+        <p>Ainda assim, sigo aqui, esperançoso. Queria muito te mostrar o quanto estou focado, o quanto tenho feito por nós. Sei que o tempo resolve as coisas… Mas, à distância, não sinto que posso lutar da mesma forma que lutaria ao seu lado. Entendo que queira esse espaço, respeito isso, mas também queria entender: como posso te mostrar que estou melhor, mesmo de longe?</p>
+        
+        <p>A verdade é que eu não sei. Mas, se você souber, por favor, me diga.</p>
+        
+        <p>Sigo te esperando.</p>
+        
+        <p><strong>Te amo.</strong></p>
+        
+        <h3>Caso queira voltar para alguma pagina, basta clicar nos botões abaixo:</h3>
+        <a href="texto.html" id="btnTexto"><h4>Texto</h4></a>
+        <a href="motivos.html"id="btnTexto"><h4>Motivos</h4></a>
+        <a href="form.html"id="btnTexto"><h4>Formulario</h4></a>
+
+
+
+
+        <div id="contador">Carregando...</div>
+
+        <!-- Botão de música -->
+        <button id="musicaBtn">🔊 Tocar Música</button>
+        
+        <!-- Áudio de fundo -->
+        <audio id="musica" loop>
+            <source src="msc/toomuch.mp3" type="audio/mpeg">
+            Seu navegador não suporta áudio.
+        </audio>
+    
+        <script>
+            function atualizarContador() {
+                const dataSeparacao = new Date("2025-02-14T15:53:00"); // Defina a data da separação
+                const agora = new Date();
+                
+                // Calcula a diferença em milissegundos
+                const diferencaEmMilissegundos = agora - dataSeparacao;
+    
+                // Converte para tempo legível
+                const dias = Math.floor(diferencaEmMilissegundos / (1000 * 60 * 60 * 24));
+                const horas = Math.floor((diferencaEmMilissegundos % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutos = Math.floor((diferencaEmMilissegundos % (1000 * 60 * 60)) / (1000 * 60));
+                const segundos = Math.floor((diferencaEmMilissegundos % (1000 * 60)) / 1000);
+    
+                // Atualiza o contador na página
+                document.getElementById("contador").innerHTML = 
+                    `tempo sem você:
+                    <span>${dias}</span> dias, 
+                     <span>${horas}</span> horas, 
+                     <span>${minutos}</span> minutos e 
+                     <span>${segundos}</span> segundos 💔`;
+            }
+    
+            function criarCoracoesQuebrados() {
+                const coracao = document.createElement("div");
+                coracao.classList.add("heart");
+                coracao.innerHTML = "💔";
+                document.body.appendChild(coracao);
+    
+                // Posição inicial aleatória
+                coracao.style.left = Math.random() * 100 + "vw";
+                coracao.style.top = "100vh";
+                coracao.style.animationDuration = (Math.random() * 2 + 3) + "s"; // Duração aleatória
+    
+                // Remover coração após a animação
+                setTimeout(() => {
+                    coracao.remove();
+                }, 5000);
+            }
+
+            function criarCoracoesInteiros() {
+                const coracao = document.createElement("div");
+                coracao.classList.add("heart");
+                coracao.innerHTML = "❤️";
+                document.body.appendChild(coracao);
+    
+                // Posição inicial aleatória
+                coracao.style.left = Math.random() * 100 + "vw";
+                coracao.style.top = "100vh";
+                coracao.style.animationDuration = (Math.random() * 2 + 3) + "s"; // Duração aleatória
+    
+                // Remover coração após a animação
+                setTimeout(() => {
+                    coracao.remove();
+                }, 5000);
+            }
+    
+    
+            function controlarMusica() {
+                const musica = document.getElementById("musica");
+                const botao = document.getElementById("musicaBtn");
+    
+                if (musica.paused) {
+                    musica.play();
+                    botao.textContent = "🔇 Pausar Música";
+                } else {
+                    musica.pause();
+                    botao.textContent = "🔊 Tocar Música";
+                }
+            }
+            const frases = [
+                "Just shout whenever, and Ill be there",
+                "And I just cant believe, we aint together",
+                "Dont wanna close my eyes, Im scared I will miss too much",
+                "Two seconds without you its like two months, and thats too much",
+                "And girl, you are my one love, my one heart, my one life for sure",
+                "And I am be your one guy, youll be my number one girl, always making time for you",
+                "Say go through the darkest of days",
+                "I dont believe in nirvana, but the way that we love in the night gave me life",
+                "Shower you with all my attention, yeah, these are my only intentions",
+                "In the mornin or the late, say the word, on my way",
+                "I put my heart into your hands, learn the lessons you teach",
+                "You know I love you, did I ever tell you? You make it better like that",
+                "Wanna argue all day, make love all night",
+                "And I just wanna be the best of me, even though sometimes we might disagree, so that I can be the best for you"
+            ];
+
+            function criarBalao() {
+        const balao = document.createElement("div");
+        balao.className = "balao";
+        balao.innerText = frases[Math.floor(Math.random() * frases.length)];
+
+        const larguraTela = window.innerWidth;
+        const alturaTela = window.innerHeight;
+        const container = document.querySelector(".container");
+        const rect = container.getBoundingClientRect();
+
+        let x, y;
+        let seguro = false;
+
+        while (!seguro) {
+            x = Math.random() * (larguraTela - 150);
+            y = Math.random() * (alturaTela - 100);
+
+            // Garantir que os balões fiquem FORA do container
+            if (
+                x < rect.left - 100 || x > rect.right + 100 ||
+                y < rect.top - 100 || y > rect.bottom + 100
+            ) {
+                seguro = true;
+            }
+        }
+
+        balao.style.left = `${x}px`;
+        balao.style.top = `${y}px`;
+
+        document.body.appendChild(balao);
+
+        setTimeout(() => { document.body.removeChild(balao); }, 6000);
+    }
+
+
+            // Criar balões de tempos em tempos
+            setInterval(criarBalao, 3000);
+    
+    
+            document.getElementById("musicaBtn").addEventListener("click", controlarMusica);
+    
+            // Atualiza o contador ao carregar a página e a cada 1 segundo
+            atualizarContador();
+            setInterval(atualizarContador, 1000);
+    
+            // Gera corações partidos flutuando a cada 800ms
+            setInterval(criarCoracoesQuebrados, 800);
+            setInterval(criarCoracoesInteiros, 800);
+    
+        </script>
+    
+    </div>
+</body>
+</html>

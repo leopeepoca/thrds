@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Se ainda existe amor...</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: black;
+            color: #ff4d4d;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+        .container {
+            max-width: 800px;
+            width: 90%;
+            margin: auto;
+            background: #1a1a1a;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        button {
+
+            border: none;
+            border-radius: 15px;
+            background: rgba(255, 77, 77, 0.2);
+            color: #ff4d4d;
+            box-shadow: 0 4px 10px rgba(255, 77, 77, 0.5);
+            cursor: pointer;
+            text-decoration: none;
+            padding: 15px 25px;
+            margin-top: 15px;
+            font-size: 2em;
+            border-radius: 5px;
+
+
+        }
+        button:hover {
+            background-color: #d9534f;
+        }
+        #frase, #texto {
+            display: none;
+            margin-top: 15px;
+            font-size: 2em;
+        }
+        .button-container {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        #resetBtn, #novaFraseBtn {
+            display: none;
+        }
+        p {
+            text-align: justify;
+            line-height: 1.6;
+            font-size: 1.1em;
+        }
+        b {
+            color: #d9534f;
+        }
+        #voltarBtn {
+            position: fixed; /* Alterado para seguir a rolagem */
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 77, 77, 0.2);
+            color: #ff4d4d;
+            box-shadow: 0 4px 10px rgba(255, 77, 77, 0.5);
+            cursor: pointer;
+            text-decoration: none;
+        }
+        #musicaBtn {
+            position: fixed; /* Alterado para seguir a rolagem */
+            bottom: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 77, 77, 0.2);
+            color: #ff4d4d;
+            box-shadow: 0 4px 10px rgba(255, 77, 77, 0.5);
+            cursor: pointer;
+        }
+        
+        span {
+            font-weight: bold;
+            color: #ff3333;
+        }
+
+        .balao {
+            position: fixed;
+            background: rgba(255, 77, 77, 0.3);
+            color: #ff4d4d;
+            padding: 10px 15px;
+            border-radius: 15px;
+            box-shadow: 2px 2px 5px rgba(255, 77, 77, 0.5);
+            font-size: 1em;
+            animation: flutuar 5s infinite alternate ease-in-out;
+            max-width: 150px;
+            text-align: center;
+        }
+
+        /* Corações partidos animados */
+        .heart {
+            position: fixed;
+            color: hotpink;
+            font-size: 24px;
+            animation: float 5s infinite ease-in-out;
+            opacity: 0.7;
+        }
+        
+
+        @keyframes float {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            50% { transform: translateY(-50px) scale(1.2); opacity: 0.8; }
+            100% { transform: translateY(-100px) scale(1); opacity: 0; }
+        }
+        #voltarBtn, #proximoBtn {
+    display: inline-block;
+    text-decoration: none;
+    font-size: 18px;
+    color: #d9534f;
+    font-weight: bold;
+    padding: 10px 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(255, 77, 77, 0.5);
+    background-color: rgba(217, 83, 79, 0.2);
+    transition: background 0.3s ease;
+    position: fixed;
+    top: 20px;
+    z-index: 1000; /* Garante que fique sobre outros elementos */
+}
+
+#voltarBtn {
+    left: 20px;
+}
+
+#proximoBtn {
+    right: 20px;
+}
+
+#voltarBtn:hover, #proximoBtn:hover {
+    background-color: rgba(217, 83, 79, 0.5);
+}
+
+        /* Responsividade */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.8em;
+            }
+            p {
+                font-size: 1em;
+            }
+            .container {
+                padding: 15px;
+            }
+            .balao {
+                font-size: 0.9em;
+                padding: 8px 12px;
+            }
+        }
+        #contador {
+    font-size: 0.8em;
+    background: rgba(255, 77, 77, 0.2);
+    padding: 10px;
+    width: 3cm;
+    height: 3cm;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(255, 77, 77, 0.5);
+    color: #ff4d4d;
+    position: fixed; /* Alterado de absolute para fixed */
+    bottom: 20px;
+    right: 20px;
+    z-index: 10;
+    word-wrap: break-word;
+    overflow: hidden;
+}
+#frase, #texto {
+            display: none;
+            margin-top: 10px;
+        }
+        #resetBtn, #novaFraseBtn {
+            display: none;
+            margin-top: 10px;
+        }
+        .mensagem-aviso {
+    color: #d9534f;
+    font-size: 16px;
+    text-align: center;
+    margin: 20px auto; /* Espaçamento entre os elementos */
+}
+    </style>
+</head>
+<link rel="icon" href="img/icon.png" type="image/x-icon">
+<body>
+
+    <a href="texto.html" id="voltarBtn">⬅ Voltar</a>
+    <a href="form.html" id="proximoBtn">Próximo ➡</a>
+
+    <div class="container">
+        
+        <h1> Motivos para te amar:</h1>
+        <button id="cliqueBtn" onclick="mostrarTexto()">Clique aqui</button>
+        <p id="frase"></p>
+        <p id="texto"></p>
+        <div class="mensagem-aviso">⚠️ Por favor, caso a música não comece sozinha, clicar no botão <B>Tocar Música</B></div>
+        <div class="button-container">
+            <button id="novaFraseBtn" onclick="mostrarTexto()">Nova Frase</button>
+            <button id="resetBtn" onclick="resetar()">Reset</button>
+            
+
+        <!-- Botão de música -->
+        <button id="musicaBtn">🔊 Tocar Música</button>
+        
+        <!-- Áudio de fundo -->
+        <audio id="musica" loop>
+            <source src="msc/offmyface.mp3" type="audio/mpeg">
+            Seu navegador não suporta áudio.
+        </audio>
+        <div id="contador">Carregando...</div>
+        <script>
+            function atualizarContador() {
+                const dataSeparacao = new Date("2025-02-14T15:53:00"); // Defina a data da separação
+                const agora = new Date();
+                
+                // Calcula a diferença em milissegundos
+                const diferencaEmMilissegundos = agora - dataSeparacao;
+    
+                // Converte para tempo legível
+                const dias = Math.floor(diferencaEmMilissegundos / (1000 * 60 * 60 * 24));
+                const horas = Math.floor((diferencaEmMilissegundos % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutos = Math.floor((diferencaEmMilissegundos % (1000 * 60 * 60)) / (1000 * 60));
+                const segundos = Math.floor((diferencaEmMilissegundos % (1000 * 60)) / 1000);
+    
+                // Atualiza o contador na página
+                document.getElementById("contador").innerHTML = 
+                    `tempo sem você:
+                    <span>${dias}</span> dias, 
+                     <span>${horas}</span> horas, 
+                     <span>${minutos}</span> minutos e 
+                     <span>${segundos}</span> segundos 💔`;
+            }
+    
+            function criarCoracoesQuebrados() {
+                const coracao = document.createElement("div");
+                coracao.classList.add("heart");
+                coracao.innerHTML = "❤️";
+                document.body.appendChild(coracao);
+    
+                // Posição inicial aleatória
+                coracao.style.left = Math.random() * 100 + "vw";
+                coracao.style.top = "100vh";
+                coracao.style.animationDuration = (Math.random() * 2 + 3) + "s"; // Duração aleatória
+    
+                // Remover coração após a animação
+                setTimeout(() => {
+                    coracao.remove();
+                }, 5000);
+            }
+    
+    
+            function controlarMusica() {
+                const musica = document.getElementById("musica");
+                const botao = document.getElementById("musicaBtn");
+    
+                if (musica.paused) {
+                    musica.play();
+                    botao.textContent = "🔇 Pausar Música";
+                } else {
+                    musica.pause();
+                    botao.textContent = "🔊 Tocar Música";
+                }
+            }
+            const frases = [
+                "Just shout whenever, and Ill be there",
+                "And I just cant believe, we aint together",
+                "Dont wanna close my eyes, Im scared I will miss too much",
+                "Two seconds without you its like two months, and thats too much",
+                "And girl, you are my one love, my one heart, my one life for sure",
+                "And I am be your one guy, youll be my number one girl, always making time for you",
+                "Say go through the darkest of days",
+                "I dont believe in nirvana, but the way that we love in the night gave me life",
+                "Shower you with all my attention, yeah, these are my only intentions",
+                "In the mornin or the late, say the word, on my way",
+                "I put my heart into your hands, learn the lessons you teach",
+                "You know I love you, did I ever tell you? You make it better like that",
+                "Wanna argue all day, make love all night",
+                "And I just wanna be the best of me, even though sometimes we might disagree, so that I can be the best for you"
+            ];
+
+            function criarBalao() {
+        const balao = document.createElement("div");
+        balao.className = "balao";
+        balao.innerText = frases[Math.floor(Math.random() * frases.length)];
+
+        const larguraTela = window.innerWidth;
+        const alturaTela = window.innerHeight;
+        const container = document.querySelector(".container");
+        const rect = container.getBoundingClientRect();
+
+        let x, y;
+        let seguro = false;
+
+        while (!seguro) {
+            x = Math.random() * (larguraTela - 150);
+            y = Math.random() * (alturaTela - 100);
+
+            // Garantir que os balões fiquem FORA do container
+            if (
+                x < rect.left - 100 || x > rect.right + 100 ||
+                y < rect.top - 100 || y > rect.bottom + 100
+            ) {
+                seguro = true;
+            }
+        }
+
+        balao.style.left = `${x}px`;
+        balao.style.top = `${y}px`;
+
+        document.body.appendChild(balao);
+
+        setTimeout(() => { document.body.removeChild(balao); }, 6000);
+    }
+
+    // Criar um novo balão a cada 3 segundos para evitar sobreposição
+   // setInterval(criarBalao, 3000);
+   function mostrarTexto() {
+            const frases = [
+                { frase: "Forma que usa as minhas girias", texto: "Eu acho incrivel sempre as vezes que você usa/va minhas gírias, sempre achei fofo e engraçado!  Te amo!! ❤️" },
+                { frase: "O seu jeito", texto: "O jeito que você se expressa e demonstra amor é incrível, sempre me fez ficar confortavel ao seu lado! Te amo!! ❤️" },
+                { frase: "A forma como cuida das pessoas", texto: "Todas as vezes em que me senti mal, ou inseguro, você foi lá e esteve ao meu lado e me cuidou de uma forma incrível!   Te amo!! ❤️" },
+                { frase: "O seu beijo", texto: "Esse eu nem preciso dizer muito... Mas seu beijo é surreal, nós encaixamos de uma forma bizarramente boa desde o primeiro...   Te amo!! ❤️" },
+                { frase: "O jeito que passa fio dental, ", texto: "Acho que nunca te disse isso, mas mesmo você torrando minhas ideias para passar fio dental, eu achei vc a coisa mais fofa do mundo passando-o.  Te amo!! ❤️" },
+                { frase: "Sua resiliência", texto: "Apesar de todo o processo que passamos, admiro o quanto de resiliência você tem, em ainda ter uma minima oportunidade de me dar uma chance...  Te amo!! ❤️" },
+                { frase: "Suas Sardas", texto: " Apesar de ter focado nelas a pouco tempo, sempre achei suas 'sarnas', as coisinhas mais fofas do mundo!  Te amo!! ❤️" },
+                { frase: "Seu amor por cachorros", texto: "Você realmente está no meu top 3 de pessoas que amam cachorros, junto com minha mãe e minha vó, sempre achei fofo a forma em que você ficava com a milly... Te amo!! ❤️" },
+                { frase: "O nosso fogo", texto: "Você realmente sempre foi a maior foguenta que ja conheci na minha vida, bom que eu também sou, eu amo nossas provocações... Te amo!! ❤️" },
+                { frase: "A forma como quebrou o meu bloqueio emocional", texto: "Você foi a única pessoa em dois anos que me fez chorar tanto que não tenho palavras para descrever o quanto eu me senti bem em chorar de felicidade por te ter...  Te amo!! ❤️" },
+                { frase: "Seu Cabelo", texto: "Esse eu não tenho nem o que dizer, seu cabelo sempre foi espetacular, você cuida dele melhor do que cuidou de mim kkkk, uma das coisas que mais chama atenção em ti, só perde pra uma coisa... Te amo!! ❤️" },
+                { frase: "A forma como erra o caminho do GPS", texto: "Não preciso nem dizer muita coisa, mas só de lembrar de você errando o caminho pra gente ir pra praia as 6h da manhã com eu morrendo de sono... kkkkk  Te amo!! ❤️" },
+                { frase: "A forma que dirige", texto: "Apesar de eu te atazanar e encher o teu saco dirigindo, você é uma das pessoas, que eu conheço, que melhor dirige (eu nunca adimiti isso...)  Te amo!! ❤️" },
+                { frase: "A forma como cuida da sua familia", texto: "Acho incrivel como você é uma irmã e uma filha preocupada, sinto que você só não cuida de todo mundo pq nem todo mundo ta lá a todo momento.  Te amo!! ❤️" },
+                { frase: "Seu furo no queixo", texto: "Esse furo no queixo, como já disse, é o lugar certinho para eu colocar o dedo e segurar seu queixinho para te dar um beijinho.  Te amo!! ❤️" },
+                { frase: "Quando me pede para estralar suas costas", texto: "Essa é uma coisa que faz algum tempinho que não fazemos, sinto saudade de estralar suas costas!  Te amo!! ❤️" },
+                { frase: "Os seus bom dias com dois 'a's ", texto: "Essa era a melhor parte do meu dia, receber seu bom dia, era o que me dava animo para viver o dia e saber que iria te encontrar no fim de semana...  Te amo!! ❤️" },
+                { frase: "Os Presentes que me deu", texto: "Todo presente que você me deu, foi algo tão bem elaborado, não teria nem como eu não gostar, é algo que irei sentir muita falta. :(  Te amo!! ❤️" },
+                { frase: "A forma como cuidou da Milly", texto: "Millycia, apesar de ter tido um fim triste, tenho certeza que ela agradeceu você por cada minuto que esteve ao lado dela.  Te amo!! ❤️" },
+                { frase: "A forma como me provoca", texto: "Apesar de você torrar minhas ideias de vez em quando, eu sinto muita falta de você me chamando de best, mona e todos esses apelidos que já me deu...  Te amo!! ❤️" },
+                { frase: "A forma como tratou minha familia", texto: "A forma como você tratou o pessoal aqui de casa foi incrível, tomou um cafézinho com minha vó e conversou tanto com ela e minha mãe, foi incrível, sempre irei te agradecer por isso...  Te amo!! ❤️" },
+                { frase: "Suas demonstrações", texto: " Sempre achei incrivel a forma que você demonstrou amor por mim, em momentos tão inesperados, sinto falta disso... Te amo!! ❤️" },
+                { frase: "Quando jogou minecraft comigo, mesmo não gostando", texto: "Esse foi facilmente um dos melhores dias da minha vida, ter a mulher da minha vida jogando comigo o jogo da minha vida, teria como ser melhor? Te amo!! ❤️" },
+                { frase: "Todas as vezes que tomamos café da manhã juntos", texto: "Apesar de uma vez eu reclamar e dizer que queria ficar quietinho, todas as vezes que tomei um café da manhã contigo foram mágicas, eu sinto saudade disso...  Te amo!! ❤️" },
+                { frase: "A Camiseta", texto: "Nunca na vida imaginei que iria ganhar uma camiseta com o rosto da mulher da minha vida e escrita 'i love my girlfriend', eu amei, uso todos os dias para dormir...  Te amo!! ❤️" },
+                { frase: "A forma que enxerga seus erros", texto: "Eu acho lindo, a forma com que você entende e enxerga seus erros, isso diz o quão linda você é por dentro...  Te amo!! ❤️" },
+                { frase: "Como me acorda", texto: "Apesar de uma vez ter me acordado quase na base da porrada, quase 90% das vezes que você me acordou foram de formas muito fofas, isso faz falta...  Te amo!! ❤️" },
+                { frase: "Sua dedicação", texto: "Acho incrível a forma que você é dedicada em tudo que faz, seja nós, como seja a faculdade, como seja até em pintar sua unha... Você é realmente demais!  Te amo!! ❤️" },
+                { frase: "Como me roubou no jogo da vida", texto: "Apesar de eu ter saido com ódio daquele jogo, eu achei muito fofo a forma que depois você veio me pedir desculpa mesmo após me roubar daquele jeito... Te amo!! ❤️" },
+                { frase: "O jeito que se preocupa", texto: "Apesar de todo o mal que te causei, você se preocupa se eu estou bem, se estou comendo e até se estou vivendo melhor... Te amo!! ❤️" },
+                { frase: "Sonhos de futuro", texto: "Você foi a única pessoa na minha vida, com quem sonhei ter filhos, me casar, me aposentar e ser velinho junto, eu espero que isso ainda aconteça...  Te amo!! ❤️" },
+                { frase: "O seu estilo", texto: "Eu acho você a mulher mais estilosa do mundo, amo suas roupas, as camisetas e nunca vou esquecer do dia que te vi pela primeira vez, a forma que estava linda...  Te amo!! ❤️" },
+                { frase: "A conexão", texto: "Nossa conexão vai muito além de um beijo, ou qualquer coisa carnal, sinto que você me entende tão bem que até eu estando o mais errado possível, você está lá para me entender...  Te amo!! ❤️" },
+                { frase: "O jeito que me acolheu", texto: "Dentre todas as crises que tive durante o ano passado e esse ano, sinto que você me acolheu da melhor forma possível em todas (inclusive nessa que estou vivendo nesse momento).  Te amo!! ❤️" },
+                { frase: "A forma como perde a linha", texto: "Chega a ser cômico a forma que você vai se enfezando e ficando vermelha, do nada começa a me beliscar, eu sinto saudades dos seus belisquinhos...  Te amo!! ❤️" },
+                { frase: "A forma como zoa os animes que assisto", texto: "Não é segredo pra ninguém que você sempre encheu meu saco por causa dos animes que assisto, inclusive me prometeu que ia assistir alguns, mas nunca assistiu kkk... Te amo!! ❤️" },
+                { frase: "A cumplicidade", texto: "Apesar de eu não estar merecendo sua cumplicidade, você sempre foi muito querida e esteve comigo nos piores e melhores momentos... Te amo!! ❤️" },
+                { frase: "O jeito que me cuida", texto: "Apesar de você mais me atazanar do que cuidar, você sempre fez coisas tão simples, mas com um cuidado tão grando, que eu acho tão incrivel como você tem cuidado em coisinhas tão pequenas. Te amo!! ❤️" },
+                { frase: "A forma que enche o meu saco", texto: "Eu amo a forma com que você gosta de tirar minha paciência com coisinhas tão irritantes no dia a dia, mas era isso que fazia meus dias ao seu lado serem mais especiais, os 'atos de palhaçadinha!' Te amo!! ❤️" },
+                { frase: "A sua familia", texto: "Eu nunca me senti tão acolhido em algum lugar como me senti na sua casa, junto com o pessoal, eu sempre fui muito feliz em cozinhar para todo mundo e sempre por cuidarem de mim da melhor forma! Te amo!! ❤️" },
+                { frase: "O seu otimismo", texto: "Apesar de eu ser a pessoa mais negativa do mundo para tudo, você é totalmente ao contrário, eu amo seu otimismo e sua vontade de fazer dar certo.  Te amo!! ❤️" },
+                { frase: "A forma que disse que me ama", texto: "A forma com que falou que me ama foi facilmente a melhor declaração de amor que já li em minha vida, acho que nenhuma que eu fizer, vai superar o que você falou para mim.  Te amo!! ❤️" },
+                { frase: "Como tenta me compreender mesmo eu estando o mais errado possível", texto: "Não sei descrever o quanto eu acho lindo a forma que você ainda tentou me entender, mesmo estando o mais errado possível... Sinto que você não merece passar pela dor da dúvida que se alguém irá te machucar novamente, e sei que não irei deixar isso acontecer novamente, meu erro foi horrível, mas eu estou aqui por você. Te amo!! ❤️" },
+                { frase: "Seus detalhes", texto: "Você é muito detalhada, kkkk, amo cada detalhe seu, desde o dedinho do pé até o ultimo fio de cabelo da cabeça. Te amo!! ❤️" },
+                { frase: "Seu Sorriso", texto: "O seu sorriso é com certeza a 8º maravilha do mundo, quando você sorri, meu coração chega a tremer de felicidade. Te amo!! ❤️" },
+                { frase: "O nosso namoro", texto: "Nosso namoro foi algo que me levantou em muitos ambitos diferentes, me fez enxergar horizontes que jamais imaginei e me mostrou como te amar é perfeito. Te amo!! ❤️" },
+                { frase: "Sua honestidade", texto: "Eu sei o quanto a honestidade é importante para você, sei que apesar de saber que iria doer, você foi lá e falou o que precisava falar... Te amo!! ❤️" },
+                { frase: "O Jeito que puxa o freio de mão", texto: "Isso aqui eu vi que aos poucos você foi aprendendo a puxar o freio de mão, e isso ainda assim me deixa tão orgulhoso, que nem sei o que dizer kkkkkk... Te amo!! ❤️" },
+                { frase: "Seu abraço", texto: "Seu abraço é meu porto seguro, te abraçar faz eu me sentir muito bem, me faz olhar para dentro de mim e ver o quanto você tem um amor tão grande por mim, sinto falta de teus abraços. Te amo!! ❤️" },
+                { frase: "O dia em que te conheci", texto: "Obrigatoriamente, o melhor dia da minha vida, lembro até hoje de olhar você perdida no shopping me procurando, sendo que eu tava quase na sua frente kkkkk. Te amo!! ❤️" },
+                { frase: "O seu nojinho", texto: "Indiscutivelmente sua melhor reação, acho muito fofo sua carinha de nojo e o narizinho tremendo! Te amo!! ❤️" },
+                { frase: "O seu olhar", texto: "Como disse, na do cabelo, só tinha uma coisa, para mim, que ganhava dele. E é seu olhar, um olhar tão marcante, tão lindo! Eu amo olhar os seus olhinhos.  Te amo!! ❤️" }
+            ];
+            
+            const escolha = frases[Math.floor(Math.random() * frases.length)];
+            
+            document.getElementById("frase").textContent = escolha.frase;
+            document.getElementById("texto").textContent = escolha.texto;
+            
+            document.getElementById("frase").style.display = "block";
+            document.getElementById("texto").style.display = "block";
+            document.getElementById("cliqueBtn").style.display = "none";
+            document.getElementById("novaFraseBtn").style.display = "block";
+            document.getElementById("resetBtn").style.display = "block";
+        }
+        
+        function resetar() {
+            document.getElementById("frase").style.display = "none";
+            document.getElementById("texto").style.display = "none";
+            document.getElementById("cliqueBtn").style.display = "block";
+            document.getElementById("novaFraseBtn").style.display = "none";
+            document.getElementById("resetBtn").style.display = "none";
+        }
+
+// Criar balões de tempos em tempos
+setInterval(criarBalao, 5000);
+    /*
+            function criarBalao() {
+                const balao = document.createElement("div");
+                balao.className = "balao";
+                balao.innerText = frases[Math.floor(Math.random() * frases.length)];
+    
+                const x = Math.random() * (window.innerWidth - 150);
+                const y = Math.random() * (window.innerHeight - 100);
+    
+                balao.style.left = `${x}px`;
+                balao.style.top = `${y}px`;
+    
+                document.body.appendChild(balao);
+    
+                setTimeout(() => { document.body.removeChild(balao); }, 5000);
+            }
+    
+            window.addEventListener("load", () => {
+                const musica = document.getElementById("musica");
+                const popup = document.getElementById("popup");
+                musica.play().catch(() => {
+                    popup.style.display = "block";
+                });
+            });
+            /*function criarBalao() {
+                const balao = document.createElement("div");
+                balao.className = "balao";
+                balao.innerText = frases[Math.floor(Math.random() * frases.length)];
+    
+                // Define posição apenas nas laterais da tela
+                const lateral = Math.random() < 0.5 ? 'left' : 'right';
+                const y = Math.random() * (window.innerHeight - 100);
+    
+                balao.style[lateral] = "10px";
+                balao.style.top = `${y}px`;
+    
+                document.body.appendChild(balao);
+    
+                setTimeout(() => { document.body.removeChild(balao); }, 5000);
+            }*/
+    
+            //setInterval(criarBalao, 3000);
+    
+    
+            document.getElementById("musicaBtn").addEventListener("click", controlarMusica);
+    
+            // Atualiza o contador ao carregar a página e a cada 1 segundo
+            atualizarContador();
+            setInterval(atualizarContador, 1000);
+    
+            // Gera corações partidos flutuando a cada 800ms
+            setInterval(criarCoracoesQuebrados, 800);
+    
+            // Inicia o carrossel de imagens
+            iniciarCarrossel();
+        </script>
+    
+    </div>
+</body>
+</html>

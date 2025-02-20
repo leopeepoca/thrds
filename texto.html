@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Se ainda existe amor...</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: black;
+            color: #ff4d4d;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+        .container {
+            max-width: 800px;
+            width: 90%;
+            margin: auto;
+            background: #1a1a1a;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #d9534f;
+            font-size: 2em;
+        }
+        p {
+            text-align: justify;
+            line-height: 1.6;
+            font-size: 1.1em;
+        }
+        b {
+            color: #d9534f;
+        }
+
+        #musicaBtn {
+            position: fixed; /* Alterado para seguir a rolagem */
+            bottom: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 77, 77, 0.2);
+            color: #ff4d4d;
+            box-shadow: 0 4px 10px rgba(255, 77, 77, 0.5);
+            cursor: pointer;
+        }
+        
+        span {
+            font-weight: bold;
+            color: #ff3333;
+        }
+
+        .balao {
+            position: fixed;
+            background: rgba(255, 77, 77, 0.3);
+            color: #ff4d4d;
+            padding: 10px 15px;
+            border-radius: 15px;
+            box-shadow: 2px 2px 5px rgba(255, 77, 77, 0.5);
+            font-size: 1em;
+            animation: flutuar 5s infinite alternate ease-in-out;
+            max-width: 150px;
+            text-align: center;
+
+        }
+
+        /* Corações partidos animados */
+        .heart {
+            position: fixed;
+            color: hotpink;
+            font-size: 24px;
+            animation: float 5s infinite ease-in-out;
+            opacity: 0.7;
+        }
+        
+
+        @keyframes float {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            50% { transform: translateY(-50px) scale(1.2); opacity: 0.8; }
+            100% { transform: translateY(-100px) scale(1); opacity: 0; }
+        }
+        #voltarBtn, #proximoBtn {
+    display: inline-block;
+    text-decoration: none;
+    font-size: 18px;
+    color: #d9534f;
+    font-weight: bold;
+    padding: 10px 15px;
+    border-radius: 8px;
+    background-color: rgba(217, 83, 79, 0.2);
+    transition: background 0.3s ease;
+    box-shadow: 0 4px 10px rgba(255, 77, 77, 0.5);
+    position: fixed;
+    top: 20px;
+    z-index: 1000; /* Garante que fique sobre outros elementos */
+}
+
+#voltarBtn {
+    left: 20px;
+}
+
+#proximoBtn {
+    right: 20px;
+}
+
+#voltarBtn:hover, #proximoBtn:hover {
+    background-color: rgba(217, 83, 79, 0.5);
+}
+
+        /* Responsividade */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.8em;
+            }
+            p {
+                font-size: 1em;
+            }
+            .container {
+                padding: 15px;
+            }
+            .balao {
+                font-size: 0.9em;
+                padding: 8px 12px;
+            }
+        }
+        #contador {
+    font-size: 0.8em;
+    background: rgba(255, 77, 77, 0.2);
+    padding: 10px;
+    width: 3cm;
+    height: 3cm;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(255, 77, 77, 0.5);
+    color: #ff4d4d;
+    position: fixed; /* Alterado de absolute para fixed */
+    bottom: 20px;
+    right: 20px;
+    z-index: 10;
+    word-wrap: break-word;
+    overflow: hidden;
+}
+.mensagem-aviso {
+    color: #d9534f;
+    font-size: 16px;
+    text-align: center;
+    margin: 20px auto; /* Espaçamento entre os elementos */
+}
+
+
+    </style>
+</head>
+<link rel="icon" href="img/icon.png" type="image/x-icon">
+<body>
+    <a href="index.html" id="voltarBtn">⬅ Voltar</a>
+    <a href="motivos.html" id="proximoBtn">Próximo ➡</a>
+
+    <div class="container">
+        <div class="mensagem-aviso">⚠️ Por favor, caso a música não comece sozinha, clicar no botão <B>Tocar Música</B></div>
+        <h1>Se ainda existe amor...</h1>
+        <p> <b>Eu sinto falta de viver a vida ao teu lado.</b><br>
+            Sei que quebrei algo valioso, algo que talvez nunca consiga recuperar. Mas estou aqui, disposto a lutar,
+             não apenas pela tua confiança, mas por ti. Cometi um erro burro, talvez, 
+             o maior da minha vida. Perdi uma pessoa que estava ali por mim e para mim, 
+             simplesmente por não ter sido honesto. Sei que você leu coisas que podem ter te deixado muito mal, 
+             e a culpa disso é toda minha. E agora, o medo me consome... medo de ter te perdido para sempre.<br>
+             Nunca vivi algo como o que tivemos, <b>você foi e sempre será algo único na minha vida.</b> Cometi erros, 
+             mas estou aqui para lutar por nós, por tudo que construímos juntos. Sei que podemos seguir em frente, 
+             mas preciso saber se você também quer isso. Afinal, se não houver esforço de ambos os lados, qualquer 
+             tentativa será em vão, entende? Não vou te forçar a ficar, mas se ainda houver esperança em você, me dê a mão. 
+             Vamos encarar esse desafio juntos.
+        </p>
+        <p>
+            <b>Não precisamos apagar o passado, mas podemos usá-lo como um recomeço.</b><br>
+            Entendo que talvez você precise de tempo, mas se afastar pode não ser a solução para o que estamos enfrentando. 
+            Minha maior dúvida nesse momento é: <b>"Você quer me perdoar?"</b>
+        </p>
+            <p>Escolhi essa musica de fundo, por alguns motivos, um deles é por conta que você é a maior fã do justin bieber que eu conheço, 
+            não conheço outra pessoa no mundo que seja tão fã dele como você, mas não foi só por isso, eu vi que essa música é mais o justin conversando com Deus, 
+            porém, essa música além disso, representou algo pra mim que eu não sei explicar ao certo, mas é exatamente o que você me deu um "propósito", afinal, eu enxerguei um futuro ao seu lado... 
+            <b> Um propósito para querer ficar, para me manter aqui, essa música me faz querer mostrar pra você que tu é o propósito que estou aqui</b>, lutando, Thaissa. <br>
+            Parafraseando a música que dá nome ao título desse texto, <b>"Se ainda existe amor, olhe bem pra mim e me diz então que sou teu."</b>.</p>
+           
+       
+        <p>
+            Eu quero muito ouvir ainda que sou teu,
+            que seguiremos de mãos dadas para frente, mas sempre vem a famosa autosabotagem me dizendo "você realmente merece isso?" 
+            e todas as vezes que tento responder à essa pergunta, recebo um <b>NÃO</b>
+            tão grande que me dói olhar pra você e tentar lutar, mas ainda assim, apesar de tudo, estou lutando contra a minha própria mente para te manter aqui! Para nos manter vivos.
+            Como você me disse, você precisa voltar a confiar em mim, mas como posso fazer você voltar a confiar em mim de longe? Como posso fazer você ficar? 
+            Sendo que nem perto de ti, eu posso estar. A dor da sua ausência é imensurável, mas eu entendo o seu lado... 
+
+        </p>
+        <p>
+            Nesse momento uma das únicas coisas que posso fazer é me colocar no seu lugar e olhar para dentro de mim e pensar o que posso fazer para diminuir a sua dor? E todas as vezes que penso isso
+            sempre me vem o pensamento de deixar você ir, porque você não merece a dor que te causei, as mentiras que contei jamais serão apagadas no meu coração, mas eu gostaria de verdade de - como citei anteriormente - seguir um recomeço a partir 
+            delas.<b> A minha vida sem você é preta, você era o rosa da minha vida, o arco-iris (gay), era o sol, o bom dia das minhas manhãs...</b> 
+            Eu sei que palavras não bastam, sei que só o tempo curam as feridas, mas eu preciso te reconquistar, eu preciso fazer de tudo para te ter aqui, e nesse momento, a <b>ÚNICA</b> coisa que posso fazer, além de me colocar no seu lugar, é: 
+            escrever, e demonstrar o quanto estou aqui. 
+        </p> 
+        <p>
+            Uma vez, tive uma palestra na empresa em como nós devemos nos dedicar a 101% as coisas e pessoas que nos fazem bem. E hoje, eu estou me dedicando 1001% em ti.<br>
+            Espero do fundo do meu coração, que você me de a chance que preciso, tenho certeza que você nunca mais terá algum problema desse tipo comigo, afinal, toda vez que me comprometi a melhorar contigo, eu fui lá e fiz.
+            Dessa vez não será diferente, apesar de ser uma situação diferente de todas que conversamos no passado, a minha postura se manterá a mesma.
+            Sei que isso que estou fazendo parece a coisa mais clichê do mundo, mas <b>eu adoraria viver todos os clichês do mundo contigo</b>, não sei o que deu na minha cabeça para fazer uma página web,
+            mas achei que seria legal, e cá estou, montando um código de mais de 400 linhas apenas para declarar o quanto sinto sua falta. Isso foi algo que surgiu na minha cabeça do nada, sabe? Eu escrevi diversas cartas, mas acho que isso aqui...
+            Realmente é algo do fundo do meu coração. 
+        </p>
+        
+
+        <p>elaborado e feito de uma forma que eu nem sei se você vai gostar, mas é algo que eu gostaria, isso é mt mais que uma declaração, isso é eu me abrindo de uma forma que jamais me abri.
+            É justamente eu pegando um pedaço de mim e colocando aqui, para você ver, é uma abertura que jamais fiz na minha vida, estou lhe dando um pedaço de mim nesse texto e nessa página, <b>espero de verdade que tudo fique bem no final.</b></p>
+        <p>
+            Thaissa, eu te esperarei o tempo que for.<br>
+            Você vale a pena, mas olhe para mim... Imagino que você sinta o quanto estou arrependido! Eu sei que confiança demora tempo a ser reconquistada, mas novamente, eu acredito que a gente longe não 
+            melhore a questão da confiança, eu preciso de você aqui, perto de mim, para eu te mostrar que cada dia mais eu sou uma pessoa melhor e que aprendi com esse erro.<br>
+            Eu te amo e sinto muito sua falta. Por favor, não demore muito, cada dia parece que perco mais de mim, por estar faltando a parte principal aqui, você. 
+        </p>
+    
+        <p>
+            Com todo amor e arrependimento do mundo, Leonardo A.
+        </p>  
+
+        <div id="contador">Carregando...</div>
+
+        <!-- Botão de música -->
+        <button id="musicaBtn">🔊 Tocar Música</button>
+        
+        <!-- Áudio de fundo -->
+        <audio id="musica" loop>
+            <source src="msc/purpose.mp3" type="audio/mpeg">
+            Seu navegador não suporta áudio.
+        </audio>
+    
+        <script>
+            function atualizarContador() {
+                const dataSeparacao = new Date("2025-02-14T15:53:00"); // Defina a data da separação
+                const agora = new Date();
+                
+                // Calcula a diferença em milissegundos
+                const diferencaEmMilissegundos = agora - dataSeparacao;
+    
+                // Converte para tempo legível
+                const dias = Math.floor(diferencaEmMilissegundos / (1000 * 60 * 60 * 24));
+                const horas = Math.floor((diferencaEmMilissegundos % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutos = Math.floor((diferencaEmMilissegundos % (1000 * 60 * 60)) / (1000 * 60));
+                const segundos = Math.floor((diferencaEmMilissegundos % (1000 * 60)) / 1000);
+    
+                // Atualiza o contador na página
+                document.getElementById("contador").innerHTML = 
+                    `tempo sem você:
+                    <span>${dias}</span> dias, 
+                     <span>${horas}</span> horas, 
+                     <span>${minutos}</span> minutos e 
+                     <span>${segundos}</span> segundos 💔`;
+            }
+    
+            function criarCoracoesQuebrados() {
+                const coracao = document.createElement("div");
+                coracao.classList.add("heart");
+                coracao.innerHTML = "💔";
+                document.body.appendChild(coracao);
+    
+                // Posição inicial aleatória
+                coracao.style.left = Math.random() * 100 + "vw";
+                coracao.style.top = "100vh";
+                coracao.style.animationDuration = (Math.random() * 2 + 3) + "s"; // Duração aleatória
+    
+                // Remover coração após a animação
+                setTimeout(() => {
+                    coracao.remove();
+                }, 5000);
+            }
+    
+            function controlarMusica() {
+                const musica = document.getElementById("musica");
+                const botao = document.getElementById("musicaBtn");
+    
+                if (musica.paused) {
+                    musica.play();
+                    botao.textContent = "🔇 Pausar Música";
+                } else {
+                    musica.pause();
+                    botao.textContent = "🔊 Tocar Música";
+                }
+            }
+            const frases = [
+                "Just shout whenever, and Ill be there",
+                "And I just cant believe, we aint together",
+                "Dont wanna close my eyes, Im scared I will miss too much",
+                "Two seconds without you its like two months, and thats too much",
+                "And girl, you are my one love, my one heart, my one life for sure",
+                "And I am be your one guy, youll be my number one girl, always making time for you",
+                "Say go through the darkest of days",
+                "I dont believe in nirvana, but the way that we love in the night gave me life",
+                "Shower you with all my attention, yeah, these are my only intentions",
+                "In the mornin or the late, say the word, on my way",
+                "I put my heart into your hands, learn the lessons you teach",
+                "You know I love you, did I ever tell you? You make it better like that",
+                "Wanna argue all day, make love all night",
+                "And I just wanna be the best of me, even though sometimes we might disagree, so that I can be the best for you"
+            ];
+
+            function criarBalao() {
+        const balao = document.createElement("div");
+        balao.className = "balao";
+        balao.innerText = frases[Math.floor(Math.random() * frases.length)];
+
+        const larguraTela = window.innerWidth;
+        const alturaTela = window.innerHeight;
+        const container = document.querySelector(".container");
+        const rect = container.getBoundingClientRect();
+
+        let x, y;
+        let seguro = false;
+
+        while (!seguro) {
+            x = Math.random() * (larguraTela - 150);
+            y = Math.random() * (alturaTela - 100);
+
+            // Garantir que os balões fiquem FORA do container
+            if (
+                x < rect.left - 100 || x > rect.right + 100 ||
+                y < rect.top - 100 || y > rect.bottom + 100
+            ) {
+                seguro = true;
+            }
+        }
+
+        balao.style.left = `${x}px`;
+        balao.style.top = `${y}px`;
+
+        document.body.appendChild(balao);
+
+        setTimeout(() => { document.body.removeChild(balao); }, 6000);
+    }
+
+
+            // Criar balões de tempos em tempos
+            setInterval(criarBalao, 3000);
+    
+    
+            document.getElementById("musicaBtn").addEventListener("click", controlarMusica);
+    
+            // Atualiza o contador ao carregar a página e a cada 1 segundo
+            atualizarContador();
+            setInterval(atualizarContador, 1000);
+    
+            // Gera corações partidos flutuando a cada 800ms
+            setInterval(criarCoracoesQuebrados, 800);
+    
+            // Inicia o carrossel de imagens
+            iniciarCarrossel();
+        </script>
+    
+    </div>
+</body>
+</html>

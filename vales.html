@@ -248,20 +248,19 @@ body {
             const agora = new Date().getTime();
             const ultimaGeracao = localStorage.getItem("ultimaGeracaoVale");
             const valesDisponiveis = [
-                "vale1.png", "vale2.png", "vale3.png", "vale4.png", "vale5.png",
-                "vale6.png", "vale7.png", "vale8.png", "vale9.png", "vale10.png",
-                "vale11.png", "vale12.png", "vale13.png", "vale14.png", "vale15.png",
-                "vale16.png", "vale17.png"
+                "vale1_new.png", "vale2_new.png", "vale3_new.png", "vale4_new.png", "vale5_new.png",
+                "vale6_new.png", "vale7_new.png", "vale8_new.png", "vale9_new.png", "vale10_new.png",
+                "vale11_new.png", "vale13_new.png","vale16_new.png", "vale17_new.png","vale18_new.png"
             ];
 
             let valesUsados = JSON.parse(localStorage.getItem("valesUsados")) || [];
 
            // Verifica se já passou uma semana
-            if (ultimaGeracao && agora - parseInt(ultimaGeracao) < 7 * 24 * 60 * 60 * 1000) {
+          if (ultimaGeracao && agora - parseInt(ultimaGeracao) < 7 * 24 * 60 * 60 * 1000) {
                 alert("Você já gerou um vale nesta semana. Tente novamente depois.");
                 return;
             }
-        
+      
 
             // Se todos os vales já foram usados, reinicia a lista
             if (valesUsados.length === valesDisponiveis.length) {
@@ -398,6 +397,11 @@ body {
 
     // Gera corações partidos flutuando a cada 800ms
     setInterval(criarCoracoesQuebrados, 800);
+
+
+
+
+    
     </script>
     </div>
 </body>

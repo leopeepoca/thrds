@@ -424,48 +424,6 @@
 
 // Criar balões de tempos em tempos
 setInterval(criarBalao, 5000);
-    /*
-            function criarBalao() {
-                const balao = document.createElement("div");
-                balao.className = "balao";
-                balao.innerText = frases[Math.floor(Math.random() * frases.length)];
-    
-                const x = Math.random() * (window.innerWidth - 150);
-                const y = Math.random() * (window.innerHeight - 100);
-    
-                balao.style.left = `${x}px`;
-                balao.style.top = `${y}px`;
-    
-                document.body.appendChild(balao);
-    
-                setTimeout(() => { document.body.removeChild(balao); }, 5000);
-            }
-    
-            window.addEventListener("load", () => {
-                const musica = document.getElementById("musica");
-                const popup = document.getElementById("popup");
-                musica.play().catch(() => {
-                    popup.style.display = "block";
-                });
-            });
-            /*function criarBalao() {
-                const balao = document.createElement("div");
-                balao.className = "balao";
-                balao.innerText = frases[Math.floor(Math.random() * frases.length)];
-    
-                // Define posição apenas nas laterais da tela
-                const lateral = Math.random() < 0.5 ? 'left' : 'right';
-                const y = Math.random() * (window.innerHeight - 100);
-    
-                balao.style[lateral] = "10px";
-                balao.style.top = `${y}px`;
-    
-                document.body.appendChild(balao);
-    
-                setTimeout(() => { document.body.removeChild(balao); }, 5000);
-            }*/
-    
-            //setInterval(criarBalao, 3000);
     
     
             document.getElementById("musicaBtn").addEventListener("click", controlarMusica);

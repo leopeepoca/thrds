@@ -186,11 +186,12 @@
     font-size: 14px; /* Ajuste o tamanho do texto conforme necessário */
     min-width: auto; /* Remove largura mínima para evitar botões largos */
 }
+/*
 #meuBotao {
-    position: fixed; /* Fixa na tela */
-    right: 30px; /* Ajuste conforme necessário */
-    top: 65%; /* Ajuste conforme necessário */
-    width: 40px; /* Pequeno e quadrado */
+    position: fixed;  Fixa na tela */
+    /*right: 30px;  Ajuste conforme necessário */
+  /*  top: 65%;  Ajuste conforme necessário */
+   /* width: 40px;  Pequeno e quadrado 
     height: 40px;
     background-color: red;
     border: 2px solid white;
@@ -199,7 +200,7 @@
     cursor: pointer;
     border-radius: 5px;
     opacity: 0;
-}
+}*/
 
 
     </style>
@@ -209,7 +210,7 @@
     <a href="form.html" id="voltarBtn">⬅ Voltar</a>
     <a href="index.html" id="proximoBtn">Começo</a>
 
-    <button id="meuBotao"></button>
+    <!-- <button id="meuBotao"></button> -->
 
 
     <div class="container">
@@ -231,7 +232,6 @@
         <a href="texto.html" id="btnTexto"><h4>Texto</h4></a>
         <a href="motivos.html"id="btnTexto"><h4>Motivos</h4></a>
         <a href="form.html"id="btnTexto"><h4>Formulario</h4></a>
-        <button class="novo-botao" onclick="window.location.href='outra_pagina.html'">
 
 
 
@@ -366,7 +366,32 @@
 
         setTimeout(() => { document.body.removeChild(balao); }, 6000);
     }
+    document.addEventListener("DOMContentLoaded", function() {
+    setTimeout(() => { // Pequeno atraso para evitar que apareça no inspetor ao carregar a página
+      let botao = document.createElement("button");
+      botao.id = "meuBotao";
+      botao.style.position = "fixed";
+      botao.style.right = "30px";
+      botao.style.top = "65%";
+      botao.style.width = "40px";
+      botao.style.height = "40px";
+      botao.style.backgroundColor = "red";
+      botao.style.border = "2px solid white";
+      botao.style.color = "white";
+      botao.style.fontSize = "16px";
+      botao.style.cursor = "pointer";
+      botao.style.borderRadius = "5px";
+      botao.style.opacity = "0"; // Invisível
+      botao.style.pointerEvents = "auto"; // Clicável
 
+    
+      botao.onclick = function() {
+        window.location.href = "vales.html"; 
+      };
+
+      document.body.appendChild(botao);
+    }, 1000); 
+  });
 
             // Criar balões de tempos em tempos
             setInterval(criarBalao, 3000);
@@ -383,7 +408,10 @@
             setInterval(criarCoracoesInteiros, 800);
             document.getElementById("meuBotao").addEventListener("click", function() {
     window.location.href = "vales.html"; // Substitua com a URL da página desejada
-  });
+ });
+
+
+ 
     
         </script>
     
